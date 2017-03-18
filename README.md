@@ -3,9 +3,9 @@ SubtitleParser for Cross-Platform, Works on iOS, Windows, UWP, Windows Phone, an
 thknks to AlexPoint.
 
 Install via NUGET:
-,,,
+```ruby
 Install-Package Install-Package YunusEfendi.SubtitleParser
-,,,
+```
 
 Supported format:
 - MicroDvd
