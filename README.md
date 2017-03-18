@@ -4,7 +4,7 @@ thknks to AlexPoint.
 
 Install via NUGET:
 ```ruby
-Install-Package Install-Package YunusEfendi.SubtitleParser
+Install-Package YunusEfendi.SubtitleParser
 ```
 
 Supported format:
