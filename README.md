@@ -22,7 +22,8 @@ How to Use:
 async Task<StringBuilder> GetSubtitleText(StorageFile storageFile, Encoding encoding)
         {
             var sb = new StringBuilder();
-            var parser = new SrtParser();
+            var parser = new SubtitlesParser.Classes.Parsers.SrtParser();
+            // note : use SubtitlesParser.Classes.Parsers.SubParser() if you don't specift the format
             using (var stream = await storageFile.OpenStreamForReadAsync())
             {
                 var items = parser.ParseStream(stream, encoding);
