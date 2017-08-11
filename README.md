@@ -1,9 +1,9 @@
-# SubtitleParser-CrossPlatform
-SubtitleParser for Cross-Platform, Works on iOS, Windows, UWP, Windows Phone, and also works with Xamarin.
-thknks to AlexPoint.
+# Subtitle Parser Cross-Platform
+SubtitleParser for Cross-Platform, Works on all Xamarin platform (Xamarin.iOS, Xamarin.Android, Xamarin.Forms) and UWP.
+thanks to AlexPoint.
 
 Install via NUGET:
-```ruby
+```
 Install-Package YunusEfendi.SubtitleParser
 ```
 
@@ -17,24 +17,24 @@ Supported format:
 - Youtube specific XML format (still in development, contribution pleased :) )
 
 How to Use:
-# Windows 10 & Windows 10 Mobile (Windows Phone 8.1 same as Windows 10)
+# Windows 10 & Windows 10 Mobile
 ```csharp
 async Task<StringBuilder> GetSubtitleText(StorageFile storageFile, Encoding encoding)
+{
+    var sb = new StringBuilder();
+    var parser = new SubtitlesParser.Classes.Parsers.SrtParser();
+    // note : use SubtitlesParser.Classes.Parsers.SubParser() if you don't specift the format
+    using (var stream = await storageFile.OpenStreamForReadAsync())
+    {
+        var items = parser.ParseStream(stream, encoding);
+        foreach (var i in items)
         {
-            var sb = new StringBuilder();
-            var parser = new SubtitlesParser.Classes.Parsers.SrtParser();
-            // note : use SubtitlesParser.Classes.Parsers.SubParser() if you don't specift the format
-            using (var stream = await storageFile.OpenStreamForReadAsync())
+            foreach (var line in i.Lines)
             {
-                var items = parser.ParseStream(stream, encoding);
-                foreach (var i in items)
-                {
-                    foreach (var line in i.Lines)
-                    {
-                        sb.AppendLine(line);
-                    }
-                    sb.AppendLine();
-                }
+                sb.AppendLine(line);
             }
-            return sb;
+            sb.AppendLine();
         }
+    }
+    return sb;
+}
